@@ -5,7 +5,8 @@ const pool = mysql.createPool(keys.database);//modulo de conexion de la base de 
 //pool servira para comenzar la conexion
 pool.getConnection(function(err,connection){
     if(err)throw err;//not connected
-    pool.releaseConnection(connection);
+    //pool.releaseConnection(connection);
     console.log('DB is connected');
 });
+
 export default pool;

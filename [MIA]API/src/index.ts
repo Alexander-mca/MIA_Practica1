@@ -19,7 +19,7 @@ class Server{
     }
     routes():void{
         this.app.use('/', indexRoutes);
-        this.app.use('/api', apiRoutes);
+        //this.app.use('/api', apiRoutes);
     }
     start():void{//inicializa el servidor -> para que empiece a escuchar
         this.app.listen(this.app.get('port'),()=>{

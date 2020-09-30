@@ -8,6 +8,7 @@ class IndexRoutes{
     }
     config():void {
         this.router.get('/',indexController.index);
+        this.router.get('/consulta1',indexController.consulta1);
     }
 }
 const indexRoutes=new IndexRoutes();

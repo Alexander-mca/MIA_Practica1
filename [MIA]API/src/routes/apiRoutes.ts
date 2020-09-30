@@ -7,7 +7,7 @@ class ApiRoutes{
         this.config();
     }
     config():void {
-        this.router.get('/Consulta1',apiController.consulta1);
+        this.router.get('/consulta1',apiController.consulta1);
     }
 }
 const apiRoutes=new ApiRoutes();

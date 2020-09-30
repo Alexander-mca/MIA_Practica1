@@ -45,13 +45,15 @@ var ApiController = /** @class */ (function () {
     }
     ApiController.prototype.consulta1 = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var conslt1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, database_1.default.query('Select * from producto')];
+                    case 0: return [4 /*yield*/, database_1.default.query('Select * from notas', function (err, result) {
+                            if (err)
+                                throw err;
+                            res.json(result);
+                        })];
                     case 1:
-                        conslt1 = _a.sent();
-                        res.json(conslt1);
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

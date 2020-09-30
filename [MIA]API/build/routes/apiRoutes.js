@@ -8,7 +8,7 @@ var ApiRoutes = /** @class */ (function () {
         this.config();
     }
     ApiRoutes.prototype.config = function () {
-        this.router.get('/Consulta1', apiController_1.apiController.consulta1);
+        this.router.get('/consulta1', apiController_1.apiController.consulta1);
     };
     return ApiRoutes;
 }());

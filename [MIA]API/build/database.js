@@ -10,7 +10,7 @@ var pool = mysql_1.default.createPool(keys_1.default.database); //modulo de cone
 pool.getConnection(function (err, connection) {
     if (err)
         throw err; //not connected
-    pool.releaseConnection(connection);
+    //pool.releaseConnection(connection);
     console.log('DB is connected');
 });
 exports.default = pool;

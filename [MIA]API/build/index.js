@@ -7,7 +7,6 @@ var express_1 = __importDefault(require("express")); //lo del los parentesis se 
 var morgan_1 = __importDefault(require("morgan")); //se pueden ver las peticiones que se hacen
 var cors_1 = __importDefault(require("cors"));
 var indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
-var apiRoutes_1 = __importDefault(require("./routes/apiRoutes"));
 var Server = /** @class */ (function () {
     function Server() {
         this.app = express_1.default(); //express() devuelve un objeto
@@ -23,7 +22,7 @@ var Server = /** @class */ (function () {
     };
     Server.prototype.routes = function () {
         this.app.use('/', indexRoutes_1.default);
-        this.app.use('/api', apiRoutes_1.default);
+        //this.app.use('/api', apiRoutes);
     };
     Server.prototype.start = function () {
         var _this = this;
