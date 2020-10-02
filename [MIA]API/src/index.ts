@@ -11,7 +11,7 @@ class Server{
         this.routes();
     }
     config():void{
-        this.app.set('port',process.env.PORT||3000);//el process es para que si ya existe un puerto definido se toma eso
+        this.app.set('port',process.env.PORT || 3000);//el process es para que si ya existe un puerto definido se toma eso
         this.app.use(morgan('dev'));//el dev es para ver lo que estan pidiendo los clientes
         this.app.use(cors());//pedir los datos del servidor
         this.app.use(express.json());//para que entienda el formato json y guarda en un req.body
@@ -19,7 +19,7 @@ class Server{
     }
     routes():void{
         this.app.use('/', indexRoutes);
-        //this.app.use('/api', apiRoutes);
+        //this.app.use('/', apiRoutes);
     }
     start():void{//inicializa el servidor -> para que empiece a escuchar
         this.app.listen(this.app.get('port'),()=>{

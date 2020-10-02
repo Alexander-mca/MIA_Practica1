@@ -22,7 +22,7 @@ var Server = /** @class */ (function () {
     };
     Server.prototype.routes = function () {
         this.app.use('/', indexRoutes_1.default);
-        //this.app.use('/api', apiRoutes);
+        //this.app.use('/', apiRoutes);
     };
     Server.prototype.start = function () {
         var _this = this;
