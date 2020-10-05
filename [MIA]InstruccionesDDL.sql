@@ -53,45 +53,32 @@ CREATE TABLE Producto(
 );
 CREATE TABLE Pedido(
 	No_Orden integer auto_increment primary key,
-    total double,
-    cantidad integer,
     correo_Compania varchar(100),
     correo_Proveedor varchar(100),
-    cod_Producto integer,
     foreign key (correo_Compania) References Compania(correo),
-    foreign key (correo_Proveedor) References Proveedor(correo),
-    foreign key (cod_Producto) references Producto(codigo)
+    foreign key (correo_Proveedor) References Proveedor(correo)
 );
-/*CREATE TABLE Detalle_Producto(
+CREATE TABLE Detalle_Pedido(
 	No_Orden integer,
     cod_Producto integer,
 	foreign key (No_Orden) References Pedido(No_Orden),
     foreign key (cod_Producto) References Producto(codigo),
-    primary key(No_Orden,cod_Producto),
     cantidad integer,
     subtotal double    
 );
-*/
+
 CREATE TABLE Venta(
 	No_Orden integer auto_increment primary key,
     correo_Cliente varchar(100),
     correo_Compania varchar(100),
-    cod_Producto integer,
     foreign key(correo_Cliente) References Cliente(correo),
-    foreign key (correo_Compania) References Compania(correo),
-    foreign key (cod_Producto) References Producto(codigo),
-    total double,
-    cantidad integer
+    foreign key (correo_Compania) References Compania(correo)
 );
-/*CREATE TABLE Detalle_PV (
+CREATE TABLE Detalle_Venta (
     No_Orden INTEGER,
     cod_Producto INTEGER,
-    FOREIGN KEY (No_Orden)
-        REFERENCES Venta (No_Orden),
-    FOREIGN KEY (cod_Producto)
-        REFERENCES Producto (codigo),
-    PRIMARY KEY (No_Orden , cod_Producto),
+    FOREIGN KEY (No_Orden) REFERENCES Venta (No_Orden),
+    FOREIGN KEY (cod_Producto) REFERENCES Producto (codigo),
     cantidad INTEGER,
     subtotal DOUBLE
 );
-*/

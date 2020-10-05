@@ -1,4 +1,4 @@
-
+use EjeDelMundo;
 CREATE TABLE Temporal(
 	nombre_compania varchar(100),
     contacto_compania varchar(100),
@@ -64,9 +64,25 @@ insert into Compania(correo,nombre,contacto,telefono)
 select distinct t.correo_compania,t.nombre_compania,t.contacto_compania,t.telefono_compania from Temporal t;
 
 #meter datos a tabla Pedido
-insert into Pedido (total,cantidad,correo_Compania,correo_Proveedor,cod_Producto)
-select round(r.precio*(t.cantidad),2)as Total,t.cantidad,c.correo,p.correo,r.codigo from Temporal t,Compania c, Proveedor p,Producto r where (t.nombre_compania=c.nombre and lower(t.tipo)="p" and t.nombre=p.nombre and r.nombre=t.producto);
+insert into Pedido (correo_Compania,correo_Proveedor)
+select distinct c.correo,p.correo
+from Temporal t,Compania c, Proveedor p
+where (t.correo_compania=c.correo and lower(t.tipo)="p" and t.correo=p.correo);
+
+#meter datos a tabla Detalle_Pedido
+insert into Detalle_Pedido(No_Orden,cod_Producto,cantidad,subtotal)
+select pe.No_Orden,p.codigo,t.cantidad,round(p.precio*t.cantidad,2) as Total from Temporal t, Pedido pe,Producto p
+where (t.correo=pe.correo_Proveedor and t.correo_compania=pe.correo_Compania and t.producto=p.nombre);
 
 #meter datos a tabla Venta
-insert into Venta(correo_Cliente,correo_Compania,cod_Producto,total,cantidad)
-select cl.correo,co.correo,p.codigo,round(p.precio*(t.cantidad),2),t.cantidad from Temporal t, Cliente cl, Compania co,Producto p where (lower(t.tipo)="c" and cl.correo=t.correo and co.correo=t.correo_compania and p.nombre=t.producto);
+insert into Venta (correo_Compania,correo_Cliente)
+select distinct c.correo,cl.correo
+from Temporal t,Compania c, Cliente cl
+where (t.correo_compania=c.correo and lower(t.tipo)="c" and t.correo=cl.correo);
+
+#meter datos a tabla Detalle_Venta
+insert into Detalle_Venta(No_Orden,cod_Producto,cantidad,subtotal)
+select v.No_Orden,p.codigo,t.cantidad,round(p.precio*t.cantidad,2) as Total 
+from Temporal t, Venta v,Producto p
+where (t.correo=v.correo_Cliente and t.correo_compania=v.correo_Compania 
+and t.producto=p.nombre);
